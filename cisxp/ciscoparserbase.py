@@ -89,7 +89,7 @@ class CiscoParserBase():
     # Appends an error message to the list of errors. Filename and current
     # line number are prefixed to the message.
     def error(self, msg):
-        err = f'{self.filename}:{self.line_number}:\n{msg}\n{self.line}'
+        err = f'{self.filename}:{self.line_number}:\n  {msg}\n  {self.line}'
         self.errors.append(err)
 
     # Returns true if self.tokens begins with the given tokens.
@@ -108,7 +108,7 @@ class CiscoParserBase():
     def re_match(self, pattern):
         match = pattern.fullmatch(self.line)
         if match == None:
-            self.error(f're mismatch: {pattern}')
+            self.error('re mismatch.')
         return match
 
     # Performs parsing with the given parse map and an optional stop function.
