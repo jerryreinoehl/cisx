@@ -2,7 +2,8 @@
 ################################################################################
 # update.py
 #
-# Fetches files from git repository and extracts them to current directory.
+# Fetches files from git repository zip archive and extracts them to current
+# directory.
 #
 # usage: python3 update.py
 #
