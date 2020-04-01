@@ -44,6 +44,7 @@ class NATWriter(csvwriter.CSVWriter):
             'mapped srv src port',
             'mapped srv dest port',
             'after auto',
+            'unidirectional',
             'no proxy arp',
             'route lookup',
         ]
@@ -75,6 +76,7 @@ class NATWriter(csvwriter.CSVWriter):
             'mapped srv src port'   : 'Mapped Srv Src Port',
             'mapped srv dest port'  : 'Mapped Srv Dest Port',
             'after auto'            : 'After-Auto',
+            'unidirectional'        : 'Unidirectional',
             'no proxy arp'          : 'No-Proxy-Arp',
             'route lookup'          : 'Route-Lookup',
         }
@@ -143,6 +145,7 @@ class NATWriter(csvwriter.CSVWriter):
             'mapped srv src port' : self.get_src_port(nat.outside_service),
             'mapped srv dest port' : self.get_dest_port(nat.outside_service),
             'after auto' : self.get_boolean(nat.after_auto),
+            'unidirectional' : self.get_boolean(nat.unidirectional),
             'no proxy arp' : self.get_boolean(nat.no_proxy_arp),
             'route lookup' : self.get_boolean(nat.route_lookup),
         })
