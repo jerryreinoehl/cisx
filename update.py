@@ -4,7 +4,7 @@
 #
 # Fetches files from git repository and extracts them to current directory.
 #
-# usage: update.py
+# usage: python3 update.py
 #
 ################################################################################
 
