@@ -89,13 +89,14 @@ class NATWriter(csvwriter.CSVWriter):
         self.fill_auto_nat_objects()
 
     def fill_auto_nat_objects(self):
-        network_objects = [obj for obj in self.device.objects
-                            if obj.nat != None]
+        network_objects = [obj for obj in self.device.objects if obj.nat != None]
         for object in network_objects:
             self.row = {}                        # reset row
             self.fill_auto_nat_object(object)     # add auto nat object
             self.rows.append(self.row)
         for nat in self.device.nats:
+            if nat == None:
+                continue
             self.row = {}
             self.row['hostname'] = self.device.hostname
             self.set_interface_cols(nat)
@@ -107,6 +108,7 @@ class NATWriter(csvwriter.CSVWriter):
         self.set_interface_cols(object.nat)
 
     def set_interface_cols(self, nat):
+        if nat == None: return
         self.row.update({
             'inside intf name' : self.get_interface_name(nat.inside_interface),
             'mapped intf name' : self.get_interface_name(nat.outside_interface),

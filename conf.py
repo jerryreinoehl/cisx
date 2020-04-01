@@ -6,4 +6,4 @@ CONFIGURATION_DIRECTORY = 'dump'
 NAT_CSV_FILE = 'nat.csv'
 
 # The name of the error log file.
-ERROR_LOG = 'errors.log'
+ERROR_LOG = 'error.log'
