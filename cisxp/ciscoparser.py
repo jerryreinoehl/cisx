@@ -203,9 +203,8 @@ class NATSubparser():
     )
     def parse(self):
         match = self.parser.re_match(self.man_nat_re)
-        if match == None:
-            return
-        self.set_nat_from_match(*match.groups())
+        if match != None:
+            self.set_nat_from_match(*match.groups())
         return self.nat
 
     def set_nat_from_match(self, inside_interface, outside_interface,
