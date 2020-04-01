@@ -93,6 +93,11 @@ class NATWriter(csvwriter.CSVWriter):
         for object in network_objects:
             self.row = {}                        # reset row
             self.fill_auto_nat_object(object)     # add auto nat object
+            if (self.row['inside src name'] == self.row['mapped src name']
+                and self.row['inside src addr'] == self.row['mapped src addr']
+                and self.row['inside dest name'] == self.row['mapped dest name']
+                and self.row['inside dest addr'] == self.row['mapped dest addr']):
+                continue
             self.rows.append(self.row)
         for nat in self.device.nats:
             if nat == None:
@@ -100,6 +105,11 @@ class NATWriter(csvwriter.CSVWriter):
             self.row = {}
             self.row['hostname'] = self.device.hostname
             self.set_interface_cols(nat)
+            if (self.row['inside src name'] == self.row['mapped src name']
+                and self.row['inside src addr'] == self.row['mapped src addr']
+                and self.row['inside dest name'] == self.row['mapped dest name']
+                and self.row['inside dest addr'] == self.row['mapped dest addr']):
+                continue
             self.rows.append(self.row)
 
     def fill_auto_nat_object(self, object):
@@ -126,14 +136,12 @@ class NATWriter(csvwriter.CSVWriter):
             'inside dest addr' : self.get_object_addr(nat.inside_dest),
             'mapped dest addr' : self.get_object_addr(nat.outside_dest),
             'srv protocol' : self.get_service_protocol(nat),
-
             'inside srv name' : self.get_service_name(nat.inside_service),
             'inside srv src port' : self.get_src_port(nat.inside_service),
             'inside srv dest port' : self.get_dest_port(nat.inside_service),
             'mapped srv name' : self.get_service_name(nat.outside_service),
             'mapped srv src port' : self.get_src_port(nat.outside_service),
             'mapped srv dest port' : self.get_dest_port(nat.outside_service),
-
             'after auto' : self.get_boolean(nat.after_auto),
             'no proxy arp' : self.get_boolean(nat.no_proxy_arp),
             'route lookup' : self.get_boolean(nat.route_lookup),
