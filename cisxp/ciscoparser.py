@@ -198,6 +198,7 @@ class NATSubparser():
         r'(?:\s+service\s+({name})\s+({name}))?'
         r'(?:\s+(no-proxy-arp))?'
         r'(?:\s+(route-lookup))?'
+        r'(?:\s+(unidirectional))?'
         .format(name=iptools.name_re.pattern)
     )
     def parse(self):
@@ -211,7 +212,7 @@ class NATSubparser():
                            after_auto, src_type, inside_src, outside_src,
                            fallback, dest_type, inside_dest, outside_dest,
                            inside_service, outside_service, no_proxy_arp,
-                           route_lookup):
+                           route_lookup, _uni):
         self.nat.inside_interface = self.get_nat_interface(inside_interface)
         self.nat.outside_interface = self.get_nat_interface(outside_interface)
 
