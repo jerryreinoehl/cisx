@@ -201,6 +201,8 @@ class NAT():
         self.inside_service = None     # service Object()
         self.outside_service = None    # service Object()
 
+        self.unidirectional = False
+
         # no_proxy_arp is True if keyword 'no-proxy-arp' present in manual nat
         # configuration line.
         self.no_proxy_arp = False
