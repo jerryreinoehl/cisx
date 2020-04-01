@@ -29,14 +29,27 @@ def main():
         archive_name = zip_file.infolist()[0].filename
         zip_file.extractall()
 
-    for file in os.listdir(archive_name):
-        filename = os.path.join(archive_name, file)
-        print(f'extracting: {filename}')
+    walk_dir(archive_name, lambda file: print(f'extracting: {file}'))
 
     distutils.dir_util.copy_tree(archive_name, './')
 
     os.remove('tmp')
     distutils.dir_util.remove_tree(archive_name)
+
+
+def walk_dir(dir, visit):
+    if not os.path.exists(dir):
+        return
+    if not os.path.isdir(dir):
+        return
+    visit(dir)
+    for file in os.listdir(dir):
+        filename = os.path.join(dir, file)
+        if os.path.isdir(filename):
+            walk_dir(filename, visit)
+        if os.path.isfile(filename):
+            visit(filename)
+
 
 if __name__ == '__main__':
     main()
