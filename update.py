@@ -12,25 +12,33 @@
 
 import distutils.dir_util
 import os
-import requests
+import urllib.error
+import urllib.request
 import zipfile
 
 
 # Location of git repository.
-ARCHIVE_URL = 'https://github.com/jerryreinoehl/cisx/archive/master.zip'
+ARCHIVE_URL = 'https://github.com/jerryreinoehl/cisx/archive/master.zi'
 
 
 def main():
     print('fetching: ', ARCHIVE_URL)
-    response = requests.get(ARCHIVE_URL)
 
-    if response.status_code != 200:
-        print(f'response returned with status {response.status_code}')
+    # fetch data from archive url
+    try:
+        response = urllib.request.urlopen(ARCHIVE_URL)
+    except urllib.error.HTTPError as http_error:
+        print(f'response returned with status {http_error.code}')
+        exit(1)
+
+    # ensure 200 OK status
+    if response.code != 200:
+        print(f'response returned with status {response.code}')
         exit(1)
 
     # write response content to zip file
     with open('tmp', 'wb') as zip_file:
-        zip_file.write(response.content)
+        zip_file.write(response.read())
 
     # extract zip file to current directory
     with zipfile.ZipFile('tmp', 'r') as zip_file:
