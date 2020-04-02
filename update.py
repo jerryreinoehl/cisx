@@ -18,7 +18,7 @@ import zipfile
 
 
 # Location of git repository.
-ARCHIVE_URL = 'https://github.com/jerryreinoehl/cisx/archive/master.zi'
+ARCHIVE_URL = 'https://github.com/jerryreinoehl/cisx/archive/master.zip'
 
 
 def main():
