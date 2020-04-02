@@ -199,6 +199,7 @@ class NATSubparser():
         r'(?:\s+(unidirectional))?'
         r'(?:\s+(no-proxy-arp))?'
         r'(?:\s+(route-lookup))?'
+        r'\s*'
         .format(name=iptools.name_re.pattern)
     )
     def parse(self):
