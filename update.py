@@ -12,7 +12,6 @@
 
 import distutils.dir_util
 import os
-import shutil
 import requests
 import zipfile
 
