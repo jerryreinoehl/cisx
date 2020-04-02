@@ -12,7 +12,7 @@ addr_re = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:/(\d{1,2}))?')
 addr6_re = re.compile(r'([0-9A-Fa-f:]+)(?:/(\d{1,2}))?')
 
 # Regular expression to match object name.
-name_re = re.compile(r'[-A-Za-z0-9_.+]+')
+name_re = re.compile(r'[-A-Za-z0-9_.+()]+')
 
 # Returns the cidr prefix equivalent of the given subnet mask.
 def mask_to_cidr(mask):
