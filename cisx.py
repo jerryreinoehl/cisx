@@ -78,6 +78,8 @@ class CISX():
                 errors.extend(parser.errors)
                 writer.write(device)
             except Exception as e:
+                for error in errors:
+                    print(error)
                 parser.print_line()
                 raise e
 
