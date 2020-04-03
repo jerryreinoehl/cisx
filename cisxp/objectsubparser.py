@@ -385,8 +385,6 @@ class NetworkObjectGroupSubparser():
 
     # Adds a group object item to network object group.
     def add_group_object(self):
-        # object-group network VHI_DAL_DC_NET_MGT
-        #  group-object NETWORK_JUMPBOXES
         object_name = self.parser.token_at(1)
         object = self.parser.device.get_object(object_name)
         if object == None:
